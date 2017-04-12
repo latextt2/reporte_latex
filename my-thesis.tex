@@ -40,8 +40,8 @@
 % --------------------------
 %\renewcaptionname{ngerman}{\figurename}{Abb.}
 %\renewcaptionname{ngerman}{\tablename}{Tab.}
-\renewcaptionname{english}{\figurename}{Fig.}
-\renewcaptionname{english}{\tablename}{Tab.}
+\renewcaptionname{spanish}{\figurename}{Fig.}
+\renewcaptionname{spanish}{\tablename}{Tab.}
 
 % --------------------------
 % Front matter
@@ -90,8 +90,7 @@
 \setlength{\biblabelsep}{0pt}
 \setlength{\bibitemsep}{0.5\baselineskip plus 0.5\baselineskip}
 \printbibliography[nottype=online]
-\newrefcontext[labelprefix={@}]
-\printbibliography[heading=subbibliography,title={Webpages},type=online]
+\printbibliography[heading=subbibliography,title={Webseiten},type=online,prefixnumbers={@}]
 }
 \cleardoublepage
 
@@ -103,9 +102,6 @@
 
 \appendix\cleardoublepage
 \input{content/chapter-appendix}       % INCLUDE: appendix
-
-\cleardoublepage
-\input{content/colophon}
 
 \cleardoublepage
 \input{content/declaration}
