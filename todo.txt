@@ -1,0 +1,48 @@
+investigar Schweizer 1994
+
+control surge in centrigual compressors using amb 74 leakage and fringing flux
+
+poner musiquita de tomas
+
+
+capitulo magnetico
+	+ seleccion de material (ferrita, metales, cmd)
+	- imagen del dipolo
+	>A magnetizacion formula
+	>A suceptibilidad
+	c grafica BH (con rodilla) matlab
+	>+ coercitivada y remanencua
+	- Aplicacion de materiales ferromagneticos
+	>+ electroimanes e imanes permanentes
+	-F Analisis de ciruitos magneticos
+	>A caracterisacion de materiales
+	c  Titulos de metodo de diseño
+	+  curvas corriente/fuerza
+	+  analisis de campos marginales
+	+  efectos del nucleo (por longitud y bajo mu)
+ 	+  perdidas dor histeresis eddy en nucleo de electroiman
+ 	+  buenos diagramas de todo
+ 	R  iman permanente a fondo
+ 	+ curvas distancia fuerza
+
+capitulo sensores
+	+ diagramas de dimensiones
+	+ descripcion de parametros
+	+ curvas de optimizaciones
+	+ curva capacitancia desplazamiento
+
+Copitulo de macanismo de retraccion
+	+ descripciones
+	+ diagramas de dimensiones
+
+capitulo de electronica de potencia
+	+ todo
+capitulo de modelado y control electrodinamico
+	+ todo bien detallado
+Capitulo de resultados
+	comparacion con otros
+	electroniaca D comparada con la A de los demas
+	control central que tiene en cuenta el prececion
+	bajo consumo por el iman permanente por ser hibrido
+	papus pro
+	se tienen que considerar los efectos del campos marginales y la reluctancia del circuito
