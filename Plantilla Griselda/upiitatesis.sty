@@ -1,0 +1,374 @@
+%tesisupiita )Tesis: UPIITA-IPN
+%Copyright (C) 2008 Juan Carlos Guzmán Salgado
+
+\typeout{NOTICE:  This macro file is NOT proprietary and may be
+freely copied and distributed.}
+%
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{upiitatesis}
+             [2004/09/20 v1.3
+                 LaTeX package (Revised chapters)]
+
+\def\baselinestretch{2}
+
+%---New command "\setstretch" (slightly more mnemonic... and easier to type)
+
+\def\setstretch#1{\renewcommand{\baselinestretch}{#1}}
+
+%---Stretch the baseline BEFORE calculating the strut size. This improves
+%   spacing below tabular environments etc., probably...
+%   Comments are welcomed.
+%   This change not needed with new font selection scheme-MAR
+%
+%\ifx\undefined\selectfont %then new font selection scheme not invoked-MAR
+%\def\@setsize#1#2#3#4{\@nomath#1%-KPC
+%   \let\@currsize#1\baselineskip
+%   #2\baselineskip\baselinestretch\baselineskip
+%   \parskip\baselinestretch\parskip
+%   \setbox\strutbox\hbox{\vrule height.7\baselineskip
+%      depth.3\baselineskip width\z@}%-KPC
+%   \normalbaselineskip\baselineskip#3#4}
+%\else %new font selection scheme is defined, set up way to change baselines-MAR
+%      % NFSS2 does not have \setnew@baselineskip anymore - HGS
+%\def\@newbaseline{%
+%    \ifx\undefined\setnew@baselineskip% HGS
+%      \baselineskip\f@baselineskip\relax%
+%    \else% HGS
+%      \setnew@baselineskip%
+%    \fi% HGS
+%    \baselineskip\baselinestretch\baselineskip
+%    \setbox\strutbox\hbox{\vrule\@height.7\baselineskip
+%    \@depth.3\baselineskip \@width\z@}%
+%    \normalbaselineskip\baselineskip}%  -MAR
+%\fi  %-MAR
+%
+%
+%%---Incrementa el espacio entre la última línea del texto y el pie de página.
+%%
+\skip\footins 20pt plus4pt minus4pt
+%
+%
+%%---Reset baselinestretch within footnotes and floats. Originally stolen
+%%   from Stanford thesis style.
+%
+%\def\@xfloat#1[#2]{\ifhmode \@bsphack\@floatpenalty -\@Mii\else
+%   \@floatpenalty-\@Miii\fi\def\@captype{#1}\ifinner
+%      \@parmoderr\@floatpenalty\z@
+%    \else\@next\@currbox\@freelist{\@tempcnta\csname ftype@#1\endcsname
+%       \multiply\@tempcnta\@xxxii\advance\@tempcnta\sixt@@n
+%       \@tfor \@tempa :=#2\do
+%                        {\if\@tempa h\advance\@tempcnta \@ne\fi
+%                         \if\@tempa t\advance\@tempcnta \tw@\fi
+%                         \if\@tempa b\advance\@tempcnta 4\relax\fi
+%                         \if\@tempa p\advance\@tempcnta 8\relax\fi
+%         }\global\count\@currbox\@tempcnta}\@fltovf\fi
+%    \global\setbox\@currbox\vbox\bgroup
+%    \def\baselinestretch{1}
+%    \ifx\undefined\selectfont %then new font selection scheme not invoked-MAR
+%    \small\normalsize
+%    \else %else new font selection scheme is invoked-MAR
+%    \@newbaseline %include new baselinestretch-MAR
+%    \fi %-MAR
+%    \boxmaxdepth\z@
+%    \hsize\columnwidth \@parboxrestore}
+%\long\def\@footnotetext#1{\insert\footins{\def\baselinestretch{1}\footnotesize
+%    \interlinepenalty\interfootnotelinepenalty
+%    \splittopskip\footnotesep
+%    \splitmaxdepth \dp\strutbox \floatingpenalty \@MM
+%    \hsize\columnwidth \@parboxrestore
+%   \edef\@currentlabel{\csname p@footnote\endcsname\@thefnmark}\@makefntext
+%    {\rule{\z@}{\footnotesep}\ignorespaces
+%      #1\strut}}}
+%
+%% A single spaced quote (say) is done by surrounding singlespace with quote.
+%%
+\def\singlespace{%
+\vskip\parskip%
+\vskip\baselineskip%
+\def\baselinestretch{1}%
+\ifx\undefined\selectfont %then new font selection scheme not invoked-MAR
+\ifx\@currsize\normalsize\@normalsize\else\@currsize\fi%
+\else %else new font selection scheme is invoked-MAR
+\@newbaseline %include new baselinestretch-MAR
+\fi %-MAR
+\vskip-\parskip%
+\vskip-\baselineskip%
+}
+%
+\def\endsinglespace{\par}
+%
+%%  spacing, doublespace and onehalfspace all are meant to INCREASE the
+%%  spacing (i.e. calling onehalfspace from within doublespace will not
+%%  produce a graceful transition between spacings)
+%%
+%\def\spacing#1{\par%
+% \begingroup  %  moved from \endspacing by PGBR 1-29-91
+% \def\baselinestretch{#1}%
+% \ifx\undefined\selectfont %then new font selection scheme not invoked-MAR
+% \ifx\@currsize\normalsize\@normalsize\else\@currsize\fi
+% \else %else new font selection scheme is invoked-MAR
+% \@newbaseline %include new baselinestretch-MAR
+% \fi %-MAR
+%}
+%
+%\def\endspacing{\par%
+% \vskip \parskip%
+% \vskip \baselineskip%
+% \endgroup%
+% \vskip -\parskip%
+% \vskip -\baselineskip%
+%}   %\begingroup used to be here, PGBR 1-29-91
+%
+%\def\onehalfspace{\spacing{1.5}}
+%\let\endonehalfspace=\endspacing
+%
+%\def\doublespace{\spacing{2}}
+%\let\enddoublespace=\endspacing  %corrected--first end missing-MAR
+%
+%% Fix up spacing before and after displayed math
+%% (arraystretch seems to do a fine job for inside LaTeX displayed math,
+%% since array and eqnarray seem to be affected as expected)
+%% Changing \baselinestretch and doing a font change also works if done here,
+%% but then you have to change @setsize to remove the call to @nomath)
+%%
+%\everydisplay{
+%   \abovedisplayskip \baselinestretch\abovedisplayskip%
+%   \belowdisplayskip \abovedisplayskip%
+%   \abovedisplayshortskip \baselinestretch\abovedisplayshortskip%
+%   \belowdisplayshortskip  \baselinestretch\belowdisplayshortskip}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%         %available from Clarkson LaTeX-style collection
+\def\baselinestretch{1.5}
+%
+%%% End of formatting parameters %%
+%%% Define all the pieces that go on the title page and the abstract.
+%% \title and \author already exist
+%
+%\def\prevdegrees#1{\gdef\@prevdegrees{#1}}
+%\def\@prevdegrees{}
+%
+\def\unidad#1{\gdef\@unidad{#1}}
+\def\academia#1{\gdef\@academia{#1}}
+\def\nasesores#1{\gdef\@nasesores{#1}}
+\def\nalumnos#1{\gdef\@nalumnos{#1}}
+%
+%
+%%\def\chairmanname#1{\gdef\@chairmanname{#1}}
+%%\def\chairmantitle#1{\gdef\@chairmantitle{#1}}
+%\def\Presidentegrado#1{\gdef\@Presidentegrado{#1}}
+%\def\titulargrado#1{\gdef\@titulargrado{#1}}
+\def\asesora#1{\gdef\@asesora{#1}}
+\def\asesorb#1{\gdef\@asesorb{#1}}
+\def\asesorc#1{\gdef\@asesorc{#1}}
+\def\alumnoa#1{\gdef\@alumnoa{#1}}
+\def\alumnob#1{\gdef\@alumnob{#1}}
+\def\alumnoc#1{\gdef\@alumnoc{#1}}
+\def\alumnod#1{\gdef\@alumnod{#1}}
+\def\Titular#1{\gdef\@Titular{#1}}
+\def\Presidente#1{\gdef\@Presidente{#1}}
+\def\degree#1{\setbox0\hbox{#1}  %for side effect of setting \@degreeword
+  \gdef\@degree{#1}}
+\def\degreemonth#1{\gdef\@degreemonth{#1}}
+\def\degreeyear#1{\gdef\@degreeyear{#1}} %%Sólo mes y año
+\def\thesisdate#1{\gdef\@thesisdate{#1}}
+\def\materia#1{\gdef\@materia{#1}}
+
+%
+%% If you are getting two degrees, use \and between the names.
+%
+%% \and is used inside the \degree argument to separate two degrees
+%\def\and{\gdef\@degreeword{degrees} \par and \par}
+%\def\@degreeword{degree}
+%
+%% If there is no \copyrightnotice command, it is asssumed that IPN
+%% holds the copyright.  This commands adds the copyright symbol to the
+%% beginning, and puts the standard permission notice below.
+%\def\copyrightnotice#1{\copyrightnoticetext{\copyright\ #1\par\permisos}}
+%
+%% Occacionally you will need to exactly specify the text of the
+%% copyright notice.  The \copyrightnoticetext command is then useful.
+%\long\def\copyrightnoticetext#1{\gdef\@copyrightnotice{#1}}
+%\def\@copyrightnotice{\copyright\ \Ipn\ \@degreeyear}
+%
+%
+%
+%
+%\def\chairman#1#2{\gdef\@Presidente{#1}\gdef\@Presidentegrado{#2}}
+%\def\chairman2#1#2{\gdef\@Titular{#1}\gdef\@titulargrado{#2}}
+%
+%\def\asesores#1#2#3{\gdef\@asesora{#1}\par \gdef\@asesorb{#2}\par \gdef\@asesorb{#3}}
+%
+\newcommand\Vlines{%
+\def\VL{\rule[1cm]{
+1pt}{12cm}\hspace{1mm}\relax}
+\VL\VL\VL\VL\VL}
+
+
+\def\portada{\begin{titlingpage}
+\parbox{2cm}{
+\begin{flushleft}
+\includegraphics[scale=.8]{logos/ipn_trans.pdf}
+\end{flushleft}
+\begin{center}
+\Vlines
+\end{center}
+\begin{flushleft}
+\includegraphics[scale=.7]{logos/logoupiita.pdf}
+\end{flushleft}
+}\hspace*{1cm}
+\parbox{13cm}{\centering {\par \Large \bf\IPN\par}
+\vskip 1.5em \textsc{\@unidad} \vskip 2.5em
+\large{\def\baselinestretch{1.2}\Large\bf\it \@materia \par} \vskip 2.0em
+\large{\def\baselinestretch{1.2}\Large\bf ``\@title''\par} \vskip 4em {\it Que
+para obtener el t\'itulo de\par} \vskip 1em {\Large \emph{\bf ``\@degree''}}
+\vskip 3em  \ifnum \@nalumnos = 4 Presentan: \par  {\Large \bf
+\@alumnoa\par\@alumnob\par\@alumnoc\par\@alumnod\par}\else \ifnum \@nalumnos =
+3 Presentan:\par  {\Large \bf \@alumnoa\par\@alumnob\par\@alumnoc\par} \else
+\ifnum \@nalumnos = 2 Presentan: \par  {\Large \bf \@alumnoa\par\@alumnob\par}
+\else Presenta:\par {\Large \bf \@alumnoa} \fi \fi \fi \vskip 3em Asesores:
+\ifnum \@nasesores = 1 \par  {\Large \@asesora\par} \else \ifnum \@nasesores =
+2\par  {\Large \@asesora\par\@asesorb\par}
+ \else \ifnum \@nasesores = 3 \par  {\Large \@asesora\par\@asesorb\par\@asesorc\par}\fi \fi \fi
+ \vskip 2em \vfill\@degreemonth\ \@degreeyear}
+\end{titlingpage}\cleardoublepage}
+%
+\def\acta{\begin{titlingpage}
+\setlength{\voffset}{-20,10mm}
+\setlength{\textheight}{260mm}
+\parbox{2cm}{
+\begin{flushleft}
+\includegraphics[scale=.8]{logos/ipn_trans.pdf}
+\end{flushleft}
+\begin{center}
+\Vlines
+\end{center}
+\begin{flushleft}
+\includegraphics[scale=.7]{logos/logoupiita.pdf}
+\end{flushleft}
+}\hspace*{1cm}
+\parbox{13cm}{\centering {\par \Large \bf\IPN\par}
+\vskip 1.5em
+\textsc{\@unidad}
+\vskip 2.5em
+\large{\def\baselinestretch{1.2}\Large\bf\it \@materia \par}
+\vskip 2.0em
+\large{\def\baselinestretch{1.2}\Large\bf ``\@title''\par}
+\vskip 2em
+{\it Que para obtener el t\'itulo de\par}
+\vskip 1em
+{\Large \emph{\bf ``\@degree''}}
+\vskip2em \vfill
+ \ifnum \@nalumnos = 4
+{\large Presentan:}
+\par \vskip 1cm
+\begin{center}\normalsize
+\parbox{5cm}{\centering\rule{5cm}{1pt}\\ \@alumnoa}
+\parbox{2cm}{\centering\makebox[2cm]{} }
+\parbox{5cm}{\centering\rule{5cm}{1pt}\\ \@alumnob}
+\par\vskip 1cm
+\parbox{5cm}{\centering\rule{5cm}{1pt}\\ \@alumnoc}
+\parbox{2cm}{\centering\makebox[2cm]{} }
+\parbox{5cm}{\centering\rule{5cm}{1pt}\\ \@alumnod}
+\end{center}
+ \else \ifnum \@nalumnos =3
+{\large Presenta:}
+\par \vskip 1cm
+\begin{center}\normalsize
+\parbox{5cm}{\centering\rule{5cm}{1pt}\\ \@alumnoa}
+\parbox{2cm}{\centering\makebox[2cm]{} }
+\parbox{5cm}{\centering\rule{5cm}{1pt}\\ \@alumnob}
+\par\vskip 1cm
+\parbox{5cm}{\centering\rule{5cm}{1pt}\\ \@alumnoc}
+\end{center}
+ \else \ifnum \@nalumnos = 2
+{\large Presenta:}
+\par \vskip 1cm
+\begin{center}\normalsize
+\parbox{5cm}{\centering\rule{5cm}{1pt}\\ \@alumnoa}
+\parbox{2cm}{\centering\makebox[2cm]{} }
+\parbox{5cm}{\centering\rule{5cm}{1pt}\\ \@alumnob}
+\end{center}
+\else {\large Presenta:}
+\par \vskip 1cm
+\begin{center}\normalsize
+\parbox{5cm}{\centering\rule{5cm}{1pt}\\ \@alumnoa}
+\end{center}
+ \fi \fi \fi
+\vskip 1.5em \ifnum \@nasesores = 1 {\large Asesor:} \vskip 1.5em
+\begin{center}\normalsize
+\parbox{5cm}{\centering\rule{5cm}{1pt}\\ \@asesora}
+\end{center} \else \ifnum \@nasesores = 2 {\large Asesores:} \vskip 1.5em
+\begin{center}\normalsize
+\parbox{5cm}{\centering\rule{5cm}{1pt}\\ \@asesora}
+\parbox{2cm}{\makebox[2cm]{} }
+\parbox{5cm}{\centering\rule{5cm}{1pt}\\ \@asesorb}
+\end{center}
+ \else \ifnum \@nasesores = 3 {\large Asesores:} \vskip 1.5em
+\begin{center}\normalsize
+\parbox{5cm}{\centering\rule{5cm}{1pt}\\ \@asesora}
+\parbox{2cm}{\makebox[2cm]{} }
+\parbox{5cm}{\centering\rule{5cm}{1pt}\\ \@asesorb}
+\par\vskip 1cm
+\parbox{5cm}{\centering\rule{5cm}{1pt}\\ \@asesorc}
+\end{center}\fi \fi \fi
+\vskip 1.5em
+\begin{center}\normalsize
+\parbox{5cm}{\centering
+{\bf Presidente del Jurado}\vspace*{1cm}
+\rule{5cm}{1pt}\\ \@Presidente}
+\parbox{2cm}{\makebox[2cm]{} }
+\parbox{5cm}{\centering
+{\bf Profesor titular}\vspace*{1cm}
+\rule{5cm}{1pt}\\ \@Titular}
+\end{center}
+\vskip 1em
+%\@degreemonth\ \@degreeyear
+}\end{titlingpage}\cleardoublepage}
+%%%%%%%%%pagina de dedicatoria
+\def\dedicatoria{\begin{titlepage}
+ \newpage
+       \thispagestyle{plain}%\pagestyle{empty}
+\include{dedica}
+\end{titlepage}\cleardoublepage}
+%%%%%%%%pagina de agradecimientos
+\def\agradecimientos{\begin{titlepage}
+ \newpage
+       \thispagestyle{plain}%\pagestyle{empty}
+\include{agradece}\end{titlepage}\cleardoublepage}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Modificación del entrono titlepage
+\def\titlepage{\newpage\centering
+  \thispagestyle{empty}
+  \parindent 0pt \parskip 10pt plus 1fil minus 1fil
+  \def\baselinestretch{1}\@normalsize\vbox to \vsize\bgroup\vbox to 9in\bgroup}
+% The \kern0pt pushes any depth into the height.  Thanks to Richard Stone.
+\def\endtitlepage{\par\kern 300pt  \egroup\vss\egroup\newpage}
+%
+%\def\permisos{\par\noindent{\centering
+%  El autor cede los derechos a la  \Upiita\ para reproducir y \\*
+%  distribuir copias de esta tesis en cualquiera de sus partes o completa.}\par}
+%
+%
+%%%%%%%%%%%
+%
+%
+%\degree{undefined}
+%\degreemonth{degreemonth undefined}
+%\degreeyear{degreeyear undefined}
+%\def\universidad#1{\def\ipn{#1}}
+%\def\IPN{\large\expandafter{\IPN}}
+%% Nombre de la Universidad Permisos
+%\def\permisos{\par\noindent{\centering
+%  El autor cede los derechos a la  \Upiita\ para reproducir y \\*
+%  distribuir copias de esta tesis en cualquiera de sus partes o completa.}\par}
+%% Usar \date como \thesisdate
+%\let\@thesisdate=\@date
+%\def\date#1{\gdef\@date{#1}\gdef\@thesisdate{#1}}
+%\def\thisdegree#1{\degree{#1}}
+%\def\asesora#1{\gdef\@asesora{#1}}
+%\def\asesorb#1{\gdef\@asesorb{#1}}
+%\def\asesorc#1{\gdef\@asesorc{#1}}
+%
+
+
+\endinput

@@ -1,0 +1,127 @@
+\chapter{Validación y análisis de resultados}\index{Validación}
+
+\input{modeloestructural}
+
+ textte xtetextetetxtetset texttextet extetetxtetset
+texttex te textetetxtetset texttextet extet texttextet extetetxtet setet xtetset textte
+xtetextetetxtetset texttextet extetetxtetset texttex te textetetxtetset texttextet extet texttextet
+extetetxtet setet xtetset
+
+
+
+
+ textte xtetextetetxtetset texttextet extetetxtetset
+texttex te textetetxtetset texttextet extet texttextet extetetxtet setet xtetset textte
+xtetextetetxtetset texttextet extetetxtetset texttex te textetetxtetset texttextet extet texttextet
+extetetxtet setet xtetset
+
+
+\input{modelomatematico}
+
+chos de los sistemas de control que requieren la atención de los
+ingenieros son grandes, complejos e involucran muchas variables.
+Estos factores est\'an relacionados entre s\'i en modelos
+matem\'aticos complicados; las respuestas cuantitativas a estos
+problemas se obtienen de soluciones n\'umericas de las ecuaciones
+del modelo.
+
+Además de este enfoque para el an\'alisis, es necesario realizar
+una investigaci\'on cualitativa simplificada que proporcione
+respuestas simples del tipo "si o no'' y que sirvan como una
+gu\'ia tanto en el an\'alisis como en el dise\~no.
+
+Las preguntas que se realizan un ingeniero al dise\~nar un sistema
+son del tipo: ?`Flotar\'a en barco o se hundir\'a? ?`Se
+mantendr\'a en orbita el sat\'elite? ?`? ?`?´ ?`
+\section{Conceptos b\'asicos}
+
+\section{Criterios de estabilidad}
+
+\subsection{M\'etodo directo de Routh -- Hurwitz}
+\subsubsection{M\'etodo de Mikhailov}
+\subsubsection{M\'etodo de Hurwitz}
+\subsubsection{M\'etodo de Routh}
+
+\subsection{M\'etodo del Lugar de las Ra\'ices}
+
+\subsection{Criterio de Bode}
+
+\subsection{Criterio de Nyquist}
+M\'{E}TODO DE NYQUIST PARA EL AN\'{A}LISIS DE ESTABILIDAD DE
+SISTEMAS LINEALES
+
+\bigskip
+
+\begin{itemize}
+\item  Sistema en lazo cerrado
+
+
+%\begin{equation*}
+%\includegraphics{lc.bmp}
+%\end{equation*}
+
+\item  Funci\'{o}n de Tranferencia del sistema en lazo cerrado
+\begin{equation*}
+\frac{Y(S)}{R(s)}=\frac{G(s)}{1+G(s)H(s)}
+\end{equation*}
+
+\item  El sistema en lazo cerrado es estable si todos los polos de la funci\'{o}n de transferencia de lazo cerrado est\'{a}n en el semiplano
+izquierdo del plano complejo, es decir,
+
+\begin{quote}
+\text{\textit{que ningun polo de lazo cerrado est\'{e} en el}} \\
+\text{\textit{semiplano derecho del plano complejo}}
+\end{quote}
+
+\newpage
+
+\item  La funci\'{o}n de tranferencia de lazo abierto es $G(s)H(s),$
+\end{itemize}
+
+\begin{equation*}
+G(s)H(s)=\frac{Z(s)}{P(s)},\qquad Z(s),\text{ }P(s)\text{
+}polinomios
+\end{equation*}
+\quad\ \quad\ *$\quad G(s)H(s)$ es estrictamente propia, o sea, grado de $%
+Z(s)<$grado $P(s)$, ello implica
+\begin{equation*}
+\lim_{\left| s\right| \rightarrow \infty }G(s)H(s)=0
+\end{equation*}
+
+\begin{equation*}
+1+G(s)H(s)=1+\frac{Z(s)}{P(s)}=\frac{P(s)+Z(s)}{P(s)}
+\end{equation*}
+
+
+\begin{equation*}
+\frac{Y(S)}{R(s)}=\frac{G(s)}{1+G(s)H(s)}=\frac{P(s)G(s)}{P(s)+Z(s)}
+\end{equation*}
+
+CONCLUSI\'{O}N 1. \ \ Polos de $G(s)H(s)=$ Polos de $1+G(s)H(s)$
+
+CONCLUSI\'{O}N 2. \ Polos de lazo cerado = ceros $1+G(s)H(s)$
+
+\begin{itemize}
+\item  CONCLUSI\'{O}N 3. \ De conclusi\'{o}n 2\newline \index{Estabilidad}
+``EL sistema es \emph{estable} $\ $\ si \emph{todos los ceros} \ de $%
+1+G(s)H(s)$ est\'{a}n en el \emph{semiplano izquierdo} del plano
+complejo o \textit{si ninguno de los ceros de }$1+G(s)H(s)$\textit{\
+est\'{a} en el semiplano derecho}''\newpage
+
+\item  $1+G(s)H(s)$ como cociente de polinomios
+\begin{equation*}
+1+G(s)H(s)=k\frac{\left( s+z_{1}\right) \left( s+z_{2}\right) \cdots }{%
+\left( s+p_{1}\right) \left( s+p_{2}\right) \left( s+p_{3}\right) \cdots },%
+\text{ }k>0
+\end{equation*}
+\end{itemize}
+
+\^{O}j\^{O} Recordatorio:
+
+$-z_{1,\text{ }}-z_{2,\text{ }}\cdots $, son los polos de lazo
+cerrdo,
+
+$-p_{1,\text{ }}-p_{2,\text{ }}\cdots $, son los polos de lazo
+abierto, G(s)H(s).
+
+

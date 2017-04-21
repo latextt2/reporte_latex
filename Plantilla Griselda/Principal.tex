@@ -1,0 +1,153 @@
+%%% Inicio del documento se define la clase y
+%%%tesisupiita )Tesis: UPIITA-IPN
+%Copyright (C) 2017 Juan Carlos Guzmán Salgado
+%% Griselda Sánchez Otero
+%%% propiedades generales
+\documentclass[letterpaper,11pt]{upiita}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%Paquetes utilizados%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{upiitatesis}
+\usepackage{float}
+\usepackage{makeidx}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{mathrsfs}
+\usepackage{eucal}
+\usepackage{mathrsfs}
+\usepackage{graphicx}
+\usepackage{lettrine}
+\usepackage[pdftex=false,colorlinks=true]{hyperref}
+\usepackage[spanish]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage[Sonny]{fncychap}
+\usepackage{fancyhdr}
+\usepackage{subfigure}
+\usepackage{layout}
+\usepackage{textcomp}
+\usepackage{bbding}
+\usepackage{ifthen}
+\usepackage{pifont}
+\usepackage{romanidx}
+\usepackage{titlesec}
+\usepackage{titling}
+%%Propiedades adicionales
+%%%%%%%%%genera sección de índice %%%%%%%%%
+\makeindex
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Inicio de documento}}}
+\begin{document}
+%%%%%%%% Inicio de Sección de preliminares numeración con números romanos%%%%
+\frontmatter
+%%%%%%%%%%%%%  Datos de la Portada y acta
+\title{Rodamientos Magnéticos Híbridos}
+\unidad{\Upiita}
+\materia{Trabajo Terminal II}
+\academia{Mecatr\'onica}
+\degree{Ingeniero en Mecatr\'onica}     %%%%%%%%%%%%%grado
+\degreemonth{MAYO}                     %%%%%%%%%%mes
+\degreeyear{2017}                       %%%%%%%%%%año
+%%%%%%%%%%%%  Nombre del Presidente y Secretario del jurado
+\Presidente{M. en C. Alfonso Campos Vázquez}
+\Titular{M.en C. Griselda Sánchez Otero}
+%%%%%%%%%%%%%%%%%%%%%%% Datos del autor%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%para varios asesores (máximo 4) y autores (alumnos) dejar el campo en blanco de los que no deban aparecer
+%%%%%%%%%% Cuando el número de asesores=1 sólo se toma en cuenta la variable alumnoa,
+%%                                     =2 se toman alumnoa y asesorb, etc
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\nalumnos{3}
+%%%%%%% dependiendo del numero de alumno dejar vacío el campo de alumnoX, nunca eliminar o comentar la línea
+\alumnoa{Omar Alejandro Bejarano Montiel}
+\alumnob{Oscar Enriquez Ramirez}
+\alumnoc{Manuel Enrique Limones Urbina}
+%\alumnod{Giovanni Karol}
+%%%%%%%%%% número de asesores 1= solo se toma en cuenta la variable asesora, 2= se toman asesora y asesorb
+\nasesores{1}
+%%%%%%% en caso de un único asesor dejar vacío el campo de asesorb, nunca eliminar o comentar la línea
+\asesora{M. en C. Álvaro Gordillo Sol}
+%\asesorb{Dr. Johannes Carolus}
+%\asesorc{Dr. Ivan Karurosu}
+%%creacion de páginas
+\portada
+\acta
+\dedicatoria              %%%modificar archivo dedica.tex
+\agradecimientos          %%%modificar archivo agradece.tex
+\tableofcontents
+\listoffigures
+\listoftables
+\include{Resumen}               %%%modificar archivo Resumen.tex
+\include{Nomenclatura}          %%%modificar archivo Nomenclatura.tex
+\include{Simbologia}            %%%modificar archivo Simbologia.tex
+\include{objetivos}             %%%modificar archivo objetivos.tex
+%%%%General
+%%%%Específicos
+\include{introduccion}          %%%modificar archivo introduccion.tex
+%%%%%ntecedentes
+%%%%%Planteamiento del problema
+%%%%%Descripción de los capítulos
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%Inicia Contenido del trabajo%%%%%%%%%%%%%%%%%%%%%%%%%
+\mainmatter %\pagenumbering{arabic}
+\pagestyle{fancy}
+\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+\renewcommand{\sectionmark}[1]{\markright{#1}}
+\fancyhf{}
+\fancyhead[RO]{\leftmark}
+\fancyhead[LE]{\rightmark}
+\fancyhead[LO,RE]{}
+\fancyfoot{}
+\fancyfoot[RO,LE]{\thepage}
+\fancyfoot[CO]{UPIITA}
+\fancyfoot[CE]{IPN}
+\fancyfoot[RE,LO]{Ing. Mecatrónica}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%capitulo1111111111%%%%%%%%%%%%%%%%%%%%%%%
+\include{Metodologia}
+%%%%%%%%%%%%%%CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%2222222222222222222222222222222222222%%%%%%%%%%%%%%%%
+\include{diseconceptual}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\include{disedetallado}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%cccccccccc33333333%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\include{validacion}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%ccccccccccccccccc44444444444444444%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\include{conclusiones}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  BIBLIOGRAFIA  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\bibliographystyle{plain} \nocite{*}
+ \bibliography{xbiblioteca}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%  INDICE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%    APENDICES  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\part{Apéndices}
+\appendix
+\include{apendice1}
+\include{apendice2}
+\include{apendice3}
+\part{Anexos}
+\anexo
+\include{anexo1}
+\include{anexo2}
+\include{anexo3}
+\backmatter
+\newpage
+\addcontentsline{toc}{chapter}{\'Indice Alfab\'etico}%
+\printindex%
+\end{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
